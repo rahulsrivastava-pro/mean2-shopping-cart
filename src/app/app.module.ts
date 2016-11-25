@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
@@ -26,7 +27,8 @@ const routing = RouterModule.forRoot([
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
+      ReactiveFormsModule,
+      Ng2Bs3ModalModule, 
     HttpModule,
     routing
   ],

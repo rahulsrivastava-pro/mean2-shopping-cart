@@ -15,29 +15,43 @@ var calculatePaybleAmount = function(productId, mode)
 {
     var price = 0;
     Products.findOne({ p_id: productId }, function (err, product) {
+        var oldquanitity = 0;
+        var quanitity = 0;
+        var subTotal = 0;
+
         if (!err) {
             if (product) {
                 price = parseFloat(product.p_originalprice);
-                Payment.findOne({}, {}, { sort: { 'created_at': -1 } }, function (err, obj) {
+                Payment.findOne({}, function (err, obj) {
                     if (!err) {
                         if (!obj && mode == "ADD") {
                             obj = new Payment({ subtotal: price.toString(), quantity: 1 });
+                            obj.save(function (err) { console.log('large: Size saved successfully'); });
                         }
-                        else {
+                        else
+                        {
+                            oldquanitity = (parseInt(obj.quantity) - 0);
                             if (mode == "ADD") {
-                                obj.quantity = (obj.quantity - 0) + 1;
-                                obj.subtotal = (parseFloat(obj.subtotal) + price).toString();
+                                quanitity = (parseInt(obj.quantity) - 0) + 1;
+                                subTotal = (parseFloat(obj.subtotal) + parseFloat(price)).toString();
                             }
-                            else {
-                                obj.quantity = (obj.quantity - 0) - 1;
-                                obj.subtotal = (parseFloat(obj.subtotal) - price).toString();
+                            else {// REMOVE
+                                quanitity = (parseInt(obj.quantity) - 0) - 1;
+                                subTotal = (parseFloat(obj.subtotal) - parseFloat(price)).toString();
                             }
+
+
+                            Payment.findOneAndUpdate({ quantity: oldquanitity }, { $set: { quantity: quanitity, subtotal: subTotal } }, { upsert: true, new: true }, function (err, doc) {
+                                if (err) {
+                                    console.log("Something wrong when updating data!");
+                                }
+
+                                console.log("updated" + JSON.stringify(doc));
+                                console.log('payment  updated successfully');
+
+                            });
                         }
-                        obj.save(function (err) {
-                            if (!err) {
-                                console.log('payment updated successfully');
-                            }
-                        });
+
                     }
                 });
             }
@@ -58,7 +72,7 @@ module.exports = function(app) {
     // =======================
     // basic route
 
-      
+      /*
   // APIs
   // select all
   app.get('/cats', function(req, res) {
@@ -108,7 +122,7 @@ module.exports = function(app) {
       res.sendStatus(200);
     });
   });
-
+  */
 
 app.get('/setup', function(req, res) {
     
@@ -205,13 +219,12 @@ app.get('/setup', function(req, res) {
                         var quant = (parseInt(product.length) - 0) + 1;
                         console.log('quantity:' + quant);
                         product.p_quantity = quant;
-                        SelectedProducts.findOneAndUpdate({ _id: product._id }, product, { upsert: true, new: true }, function (err, doc) {
+                        SelectedProducts.findOneAndUpdate({ p_id: productId, p_sizecode: sizeCode, p_colorcode: colorCode }, { $set: { p_quantity: quant } }, { upsert: true, new: true }, function (err, doc) {
                             if (err) {
                                 console.log("Something wrong when updating data!");
                             }
-
+                            calculatePaybleAmount(productId, "ADD");
                             console.log("updated" + JSON.stringify(doc));
-                            calculatePaybleAmount(productId, "UPDATE");
                             console.log('product  updated successfully');
 
                         });
@@ -235,21 +248,16 @@ app.get('/setup', function(req, res) {
         var newSizeCode = req.params.new_p_sizecode;
         var newColorCode = req.params.new_p_colorcode;
 
+        SelectedProducts.findOneAndUpdate({ p_id: productId, p_sizecode: oldSizeCode, p_colorcode: oldColorCode }, { $set: { p_sizecode: newSizeCode, p_colorcode: oldColorCode } }, { upsert: true, new: true }, function (err, doc) {
+            if (err) {
+                console.log("Something wrong when updating data!");
+            }
 
-        SelectedProducts.find({p_id: productId, p_sizecode:oldSizeCode, p_colorcode:oldColorCode}, function(err, product) 
-        {
-                if(!err) {
-                    if(product) {
-                        product.p_sizecode =  newSizeCode;
-                        product.p_colorcode =  newColorCode;
-                    }
-                    product.save(function(err) {
-                        if(!err) {
-                            console.log('product  saved successfully');
-                        }
-                    });
-                }
+            console.log("updated" + JSON.stringify(doc));
+            console.log('product  updated successfully');
+
         });
+
         res.sendStatus(200);
     });
 
@@ -275,28 +283,33 @@ app.get('/setup', function(req, res) {
         var _netAmount = 0;
         var _quantity = 0;
            
-        Payment.findOne({}, {}, { sort: { 'created_at': -1 } }, function (err, obj) {
+        Payment.findOne({}, function (err, obj) {
             if (!err) {
                 if (obj) {
                     _subTotal = parseFloat(obj.subtotal);
-                    _quantity = obj.quantity;
+                    _quantity = parseInt(obj.quantity);
 
                     if(_quantity == 3)
                     {
-                        _discount = 0.05 * _subTotal; // 5%
+                        _discount = 0.05 * parseFloat(_subTotal); // 5%
                     }
                     else if (_quantity > 3 && _quantity <= 6) {
-                        _discount = 0.1 * _subTotal; // 10%
+                        _discount = 0.1 * parseFloat(_subTotal); // 10%
                     }
                     else if(_quantity>10){
-                        _discount = 0.25 * _subTotal; // 25%
+                        _discount = 0.25 * parseFloat(_subTotal); // 25%
                     }
-                    _netAmount = _subTotal - _discount;
+                    _netAmount = parseFloat(_subTotal) - parseFloat(_discount);
 
+                    _subTotal = parseFloat(_subTotal).toFixed(2);
+                    _discount = parseFloat(_discount).toFixed(2);
+                    _netAmount = parseFloat(_netAmount).toFixed(2);
+
+                    res.status(200).json({ subTotal: _subTotal.toString(), discount: _discount.toString(), netAmount: _netAmount.toString() });
                 }
             }
         });
-        res.status(200).json({ subTotal: _subTotal.toString(), discount: _discount.toString(), netAmount: _netAmount.toString() });
+        res.status(200);
     });
 
 };

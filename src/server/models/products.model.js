@@ -6,7 +6,8 @@ var productSchema = mongoose.Schema({
     p_variation: String,
     p_style: String,
     p_originalprice: String,
-    p_currency: String
+    p_currency: String,
+    p_image: String
 });
 
 var Products = mongoose.model('Products', productSchema);

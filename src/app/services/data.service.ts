@@ -27,4 +27,36 @@ export class DataService {
     return this.http.delete(`/cat/${cat._id}`, this.options);
   }
   
+ 
+    getColors() {
+        return this.http.get('/colors').map(res => res.json());
+    }  
+
+    getSizes() {
+        return this.http.get('/sizes').map(res => res.json());
+    }  
+    
+    getProducts() {
+        return this.http.get('/products').map(res => res.json());
+    }  
+
+    getSelectedProducts() {
+        return this.http.get('/selectedproducts').map(res => res.json());
+    }  
+     
+    addProduct(product) {
+        return this.http.post("/selectedproducts", JSON.stringify(product), this.options);
+    }
+
+    editProduct(product) {
+        return this.http.post("/updateselectedproducts", JSON.stringify(product), this.options);
+    }
+
+    deleteProduct(product) {
+        return this.http.post("/deleteselectedproducts", JSON.stringify(product), this.options);
+    }
+
+    getTotal() {
+        return this.http.get('/calculateTotal').map(res => res.json());
+    } 
 }

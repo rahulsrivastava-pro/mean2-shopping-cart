@@ -5,9 +5,32 @@
   </div>
 </div>
 
+<h4 class="card-header vspace">Total Products : {{products.length}}</h4>
+
+<div class="row vspace">
+    <div class="col-md-12 col-xs-12 rowCover" *ngFor="let product of products; let index=index; let odd=odd; let even=even;" [ngClass]="{ odd: odd, even: even }">
+        <div class="row rowBorder">
+            <div class="col-md-4"><img src="/assets/{{product.p_image}}" /></div>
+            <div class="col-md-8">
+            
+            <div class="row">
+                <div class="col-md-8"> {{product.p_variation | uppercase}} {{product.p_name | uppercase}} </div> 
+                <div class="col-md-4"> {{product.p_originalprice}} {{product.p_currency}}</div>
+            </div>
+            <div class="row">
+                STYLE#: {{product.p_style}} 
+            </div>
+            <div class="row">
+                <a href="#" (click)="modal.open();loadProduct(product)">ADD</a>
+            </div></div>
+    </div>
+</div>
+
+
+
 <app-toast [message]="toast.message"></app-toast>
 
-<div class="card" *ngIf="!isLoading">
+<!--<div class="card" *ngIf="!isLoading">
   <h4 class="card-header">Current cats ({{cats.length}})</h4>
   <div class="card-block">
     <table class="table table-bordered table-striped">
@@ -73,7 +96,7 @@
       <button class="btn btn-primary" type="submit" [disabled]="!addCatForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
     </form>
   </div>
-</div>
+</div>-->
 
 
 <button type="button" class="btn btn-default" (click)="modal.open()">Open me!</button>
@@ -83,9 +106,23 @@
         <h4 class="modal-title">I'm a modal!</h4>
     </modal-header>
     <modal-body>
-        Hello World!
+        <div>
+            <select [(ngModel)]="productSize">
+                <option value="">SIZE</option>
+                <option *ngFor="let size of sizes" value={{size.code}}>{{size.name}}</option>
+            </select>
+
+            <select [(ngModel)]="productColor">
+                <option value="">COLOR</option>
+                <option *ngFor="let color of colors" value={{color.hexcode}}>{{color.name}}</option>
+            </select>
+
+        </div>
+        {{product.p_variation | uppercase}} {{product.p_name | uppercase}}
+
+        <button class="btn btn-primary" type="button" (click)="modal.close();addProduct(product)">Save</button>
     </modal-body>
-    <modal-footer [show-default-buttons]="true"></modal-footer>
+
 </modal>
 
 

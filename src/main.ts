@@ -1,3 +1,4 @@
+//import 'ng2-bs4-modal/bundles/ng2-bs4-modal.min';
 import './polyfills.ts';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';

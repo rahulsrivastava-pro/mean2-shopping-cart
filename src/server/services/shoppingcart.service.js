@@ -25,11 +25,11 @@ var calculatePaybleAmount = function(productId, mode)
                         }
                         else {
                             if (mode == "ADD") {
-                                obj.quantity = obj.quantity + 1;
+                                obj.quantity = (obj.quantity - 0) + 1;
                                 obj.subtotal = (parseFloat(obj.subtotal) + price).toString();
                             }
                             else {
-                                obj.quantity = obj.quantity - 1;
+                                obj.quantity = (obj.quantity - 0) - 1;
                                 obj.subtotal = (parseFloat(obj.subtotal) - price).toString();
                             }
                         }
@@ -181,26 +181,44 @@ app.get('/setup', function(req, res) {
     // create
     app.post('/selectedproducts', function(req, res) {
 
-        var productId = req.params.p_id;
-        var sizeCode = req.params.p_sizecode;
-        var colorCode = req.params.p_colorcode;
+        var productId = req.body.p_id;
+        var sizeCode = req.body.p_sizecode;
+        var colorCode = req.body.p_colorcode;
         var quantity = 0;
-
+        
         SelectedProducts.find({p_id: productId, p_sizecode:sizeCode, p_colorcode:colorCode}, function(err, product) 
         {
+            console.log('product:' + product.length)
                 if(!err) {
-                    if(!product) {
-                        product = new SelectedProducts({p_id: productId,p_sizecode: sizeCode, p_colorcode:colorCode, p_quantity:1});
+                    if (!product || product.length == 0) {
+                        product = new SelectedProducts({ p_id: productId, p_sizecode: sizeCode, p_colorcode: colorCode, p_quantity: 1 });
+                        console.log('product2:' + JSON.stringify(product))
+                        product.save(function (err) {
+                            if (!err) {
+                                calculatePaybleAmount(productId, "ADD");
+                                console.log('product  saved successfully');
+                            }
+                        });
                     }
-                    else{
-                        product.p_quantity = product.p_quantity + 1;
+                    else {
+                        console.log('product2:' + JSON.stringify(product));
+                        var quant = (parseInt(product.length) - 0) + 1;
+                        console.log('quantity:' + quant);
+                        product.p_quantity = quant;
+                        SelectedProducts.findOneAndUpdate({ _id: product._id }, product, { upsert: true, new: true }, function (err, doc) {
+                            if (err) {
+                                console.log("Something wrong when updating data!");
+                            }
+
+                            console.log("updated" + JSON.stringify(doc));
+                            calculatePaybleAmount(productId, "UPDATE");
+                            console.log('product  updated successfully');
+
+                        });
+
+
                     }
-                    product.save(function(err) {
-                        if (!err) {
-                            calculatePaybleAmount(productId, "ADD");
-                            console.log('product  saved successfully');
-                        }
-                    });
+                   
                 }
         });
         res.sendStatus(200);

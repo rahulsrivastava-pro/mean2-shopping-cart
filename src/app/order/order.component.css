@@ -1,0 +1,34 @@
+.table td, .table th {
+   text-align: center;
+   width: 25%;  
+}
+
+p{
+    padding: 50px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    background: #dbdfe5;
+}
+
+.vspace{
+    margin-top:25px;
+}
+
+
+.odd{
+ 
+
+}
+.even{
+   
+}
+
+.rowCover{
+   padding:20px
+}
+
+.rowBorder{
+    border-bottom: 5px solid #e1e1e1;
+    padding-bottom: 13px;
+}

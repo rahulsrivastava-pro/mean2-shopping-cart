@@ -40,10 +40,14 @@ export class DataService {
         return this.http.get('/products').map(res => res.json());
     }  
 
+	getProductById(p_id) {
+		return this.http.get('/products/${p_id}').map(res => res.json());
+	}
+
     getSelectedProducts() {
         return this.http.get('/selectedproducts').map(res => res.json());
     }  
-     
+ 
     addProduct(product) {
         return this.http.post("/selectedproducts", JSON.stringify(product), this.options);
     }

@@ -64,6 +64,7 @@ var calculatePaybleAmount = function(productId, mode)
 }
 
 
+
 module.exports = function(app) {
   'use strict';
   
@@ -183,11 +184,30 @@ app.get('/setup', function(req, res) {
         });
     });
 
+    app.get('/products/:id', function (req, res) {
+        Products.findOne({ p_id: req.params.id }, function (err, obj) {
+            if (err) return console.error(err);
+            res.json(obj);
+        })
+    });
+
     // get all selected products
     app.get('/selectedproducts', function(req, res) {
             SelectedProducts.find({}, function(err, docs) {
-            if(err) return console.error(err);
-            res.json(docs);
+                if (err) return console.error(err);
+
+                var productsArr = [];
+
+                for (var i = 0; i < docs.length; i++) {
+                    var jsonObj = JSON.parse(docs[i]);
+                    jsonObj.test = 'test';
+                    console.log(jsonObj);
+                    //productsArr.push(JSON.stringify(jsonObj));
+                }
+
+               // var products = JSON.stringify(productsArr);
+              //  console.log(products);
+                res.json(docs);
         });
     });
 

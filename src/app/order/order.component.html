@@ -1,19 +1,61 @@
-<div class="card">
-  <h4 class="card-header">About</h4>
-  <div class="card-block">
-    <ul>
-      <li><b>Author:</b> <a href="https://github.com/DavideViolante" target="_blank">Davide Violante</a></li>
-      <li><b>GitHub:</b> <a href="https://github.com/DavideViolante/Angular2-Full-Stack" target="_blank">project repository</a></li>
-      <li><b>Tools used:</b></li>
-      <ul>
-        <li><a href="http://www.mongoosejs.com" target="_blank"><b>M</b>ongoose.js</a> (<a href="https://www.mongodb.com" target="_blank">MongoDB</a>)</li>
-        <li><a href="http://www.expressjs.com" target="_blank"><b>E</b>xpress.js</a></li>
-        <li><a href="https://www.angular.io" target="_blank"><b>A</b>ngular 2</a></li>
-        <li><a href="https://www.nodejs.org" target="_blank"><b>N</b>ode.js</a></li>
-        <li><a href="https://cli.angular.io" target="_blank">Angular CLI</a></li>
-        <li><a href="http://www.getbootstrap.com" target="_blank">Bootstrap</a></li>
-        <li><a href="http://www.fontawesome.io" target="_blank">Font Awesome</a></li>
-      </ul>
-    </ul>
-  </div>
+<div class="card" *ngIf="isLoading">
+    <h4 class="card-header">Loading...</h4>
+    <div class="card-block text-xs-center">
+        <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
+    </div>
 </div>
+
+<h4 class="card-header vspace">Total Products : {{products.length}}</h4>
+
+<div class="row vspace">
+    <div class="col-md-12 col-xs-12 rowCover" *ngfor="let product of selectedproducts; let index=index; let odd=odd; let even=even;" [ngclass]="{ odd: odd, even: even }">
+        <div class="row rowBorder">
+            <div class="col-md-4"><img src="/assets/{{product.p_image}}" /></div>
+            <div class="col-md-8">
+
+                <div class="row">
+                    <div class="col-md-8"> {{product.p_variation | uppercase}} {{product.p_name | uppercase}} </div>
+                    <div class="col-md-4"> {{product.p_originalprice}} {{product.p_currency}}</div>
+                </div>
+                <div class="row">
+                    STYLE#: {{product.p_style}}
+                </div>
+                <div class="row">
+                    <a href="#" (click)="modal.open();loadProduct(product)">ADD</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <app-toast [message]="toast.message"></app-toast>
+
+
+    <button type="button" class="btn btn-default" (click)="modal.open()">Open me!</button>
+
+    <modal #modal>
+        <modal-header [show-close]="true">
+            <h4 class="modal-title">I'm a modal!</h4>
+        </modal-header>
+        <modal-body>
+            <div>
+                <select [(ngModel)]="productSize">
+                    <option value="">SIZE</option>
+                    <option *ngFor="let size of sizes" value={{size.code}}>{{size.name}}</option>
+                </select>
+
+                <select [(ngModel)]="productColor">
+                    <option value="">COLOR</option>
+                    <option *ngFor="let color of colors" value={{color.hexcode}}>{{color.name}}</option>
+                </select>
+
+            </div>
+            {{product.p_variation | uppercase}} {{product.p_name | uppercase}}
+
+            <button class="btn btn-primary" type="button" (click)="modal.close();addProduct(product)">Save</button>
+        </modal-body>
+
+    </modal>
+
+

@@ -63,68 +63,9 @@ var calculatePaybleAmount = function(productId, mode)
 
 }
 
-
-
 module.exports = function(app) {
   'use strict';
   
-    // =======================
-    // routes ================
-    // =======================
-    // basic route
-
-      /*
-  // APIs
-  // select all
-  app.get('/cats', function(req, res) {
-    Cat.find({}, function(err, docs) {
-      if(err) return console.error(err);
-      res.json(docs);
-    });
-  });
-
-  // count all
-  app.get('/cats/count', function(req, res) {
-    Cat.count(function(err, count) {
-      if(err) return console.error(err);
-      res.json(count);
-    });
-  });
-
-  // create
-  app.post('/cat', function(req, res) {
-    var obj = new Cat(req.body);
-    obj.save(function(err, obj) {
-      if(err) return console.error(err);
-      res.status(200).json(obj);
-    });
-  });
-
-  // find by id
-  app.get('/cat/:id', function(req, res) {
-    Cat.findOne({_id: req.params.id}, function(err, obj) {
-      if(err) return console.error(err);
-      res.json(obj);
-    })
-  });
-
-  // update by id
-  app.put('/cat/:id', function(req, res) {
-    Cat.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
-      if(err) return console.error(err);
-      res.sendStatus(200);
-    })
-  });
-
-  // delete by id
-  app.delete('/cat/:id', function(req, res) {
-    Cat.findOneAndRemove({_id: req.params.id}, function(err) {
-      if(err) return console.error(err);
-      res.sendStatus(200);
-    });
-  });
-  */
-
 app.get('/setup', function(req, res) {
     
      // save Color master set
@@ -192,25 +133,26 @@ app.get('/setup', function(req, res) {
     });
 
     // get all selected products
-    app.get('/selectedproducts', function(req, res) {
-            SelectedProducts.find({}, function(err, docs) {
-                if (err) return console.error(err);
+    app.get('/selectedproducts', function (req, res) {
+        var productsArr = [];
+        var productsList = [];
 
-                var productsArr = [];
+        Products.find({}).lean().exec(function (err, productInfo) {
+            productsArr = productInfo;
+        });
 
-                for (var i = 0; i < docs.length; i++) {
-                    var jsonObj = JSON.parse(docs[i]);
-                    jsonObj.test = 'test';
-                    console.log(jsonObj);
-                    //productsArr.push(JSON.stringify(jsonObj));
+        SelectedProducts.find({}).lean().exec(function (err, products) {
+            for (var i = 0; i < products.length; i++) {
+                for (var j in productsArr) {
+                    if (productsArr[j].p_id == products[i].p_id) {
+                        products[i].info = productsArr[j];
+                    }
                 }
-
-               // var products = JSON.stringify(productsArr);
-              //  console.log(products);
-                res.json(docs);
+            }
+            productsList = products;
+            return res.end(JSON.stringify(productsList));
         });
     });
-
 
     // create
     app.post('/selectedproducts', function(req, res) {
@@ -248,10 +190,7 @@ app.get('/setup', function(req, res) {
                             console.log('product  updated successfully');
 
                         });
-
-
                     }
-                   
                 }
         });
         res.sendStatus(200);

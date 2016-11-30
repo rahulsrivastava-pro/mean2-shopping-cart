@@ -1,4 +1,4 @@
-<div class="card" *ngIf="isLoading">
+<div class="card" *ngIf="isDataLoading">
     <h4 class="card-header">Loading...</h4>
     <div class="card-block text-xs-center">
         <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
@@ -7,26 +7,27 @@
 
 <h4 class="card-header vspace">Total Products : {{products.length}}</h4>
 
-<div class="row vspace">
-    <div class="col-md-12 col-xs-12 rowCover" *ngfor="let product of selectedproducts; let index=index; let odd=odd; let even=even;" [ngclass]="{ odd: odd, even: even }">
+<div class="row vspace" *ngIf="!isDataLoading">
+    <div class="col-md-12 col-xs-12 rowCover" *ngFor="let product of selectedproducts; let index=index; let odd=odd; let even=even;" [ngClass]="{ odd: odd, even: even }">
         <div class="row rowBorder">
-            <div class="col-md-4"><img src="/assets/{{product.p_image}}" /></div>
+            <div class="col-md-4"><img src="/assets/{{product.info.p_image}}" /></div>
             <div class="col-md-8">
 
                 <div class="row">
-                    <div class="col-md-8"> {{product.p_variation | uppercase}} {{product.p_name | uppercase}} </div>
-                    <div class="col-md-4"> {{product.p_originalprice}} {{product.p_currency}}</div>
+                    <div class="col-md-8"> {{product.info.p_variation | uppercase}} {{product.info.p_name | uppercase}} </div>
+                    <div class="col-md-4"> {{product.info.p_originalprice}} {{product.info.p_currency}}</div>
                 </div>
                 <div class="row">
-                    STYLE#: {{product.p_style}}
+                    STYLE#: {{product.info.p_style}}
                 </div>
                 <div class="row">
-                    <a href="#" (click)="modal.open();loadProduct(product)">ADD</a>
+                    <a id="neworder" (click)="modal.open();loadProduct(product);">Edit</a>
+
                 </div>
             </div>
         </div>
     </div>
-
+    
 
 
     <app-toast [message]="toast.message"></app-toast>
@@ -51,7 +52,7 @@
                 </select>
 
             </div>
-            {{product.p_variation | uppercase}} {{product.p_name | uppercase}}
+            {{ modalname | uppercase }}
 
             <button class="btn btn-primary" type="button" (click)="modal.close();addProduct(product)">Save</button>
         </modal-body>

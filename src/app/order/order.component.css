@@ -32,3 +32,18 @@ p{
     border-bottom: 5px solid #e1e1e1;
     padding-bottom: 13px;
 }
+
+.shopping-head
+{
+    color: #A7A7A7;
+    font-size: 44px;
+    font-family: sans-serif;
+    font-weight: normal;
+    padding: 27px 0px 10px 30px;
+
+}
+
+.border_text{
+    border:1px solid solid;
+}
+

@@ -1,6 +1,5 @@
-.table td, .table th {
-   text-align: center;
-   width: 25%;  
+body {
+  font-family: "Trebuchet MS";
 }
 
 p{
@@ -137,4 +136,27 @@ p{
     color: #808080;
     font-size: 13px;
     font-weight: 500;
+}
+
+.side-text-1{
+    color: #808080;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0px 0px 20px 0px;
+    margin-top: 30px;
+}
+
+.side-text-2{
+    color: #808080;
+    font-size: 12px;
+    font-weight: 300;
+    padding: 0px 0px 20px 0px;
+}
+
+.side-text-3{
+    color: #808080;
+    font-size: 12px;
+    font-weight: 300;
+    text-decoration:underline;
+    padding: 0px 0px 20px 0px;
 }

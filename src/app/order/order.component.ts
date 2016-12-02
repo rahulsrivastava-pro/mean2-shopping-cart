@@ -38,7 +38,7 @@ export class OrderComponent implements OnInit {
 
 
   constructor(private http: Http,
-              private dataService: DataService,
+      private dataService: DataService,
               private toast: ToastComponent,
               private formBuilder: FormBuilder) { }
 
@@ -84,6 +84,17 @@ export class OrderComponent implements OnInit {
             );
     }
 
+    getColorByCode(code) {
+        var name = "";
+        for (var i = 0; i < this.colors.length; i++) {
+            if (this.colors[i].hexcode == code) {
+                name = this.colors[i].name;
+            }
+        }
+        return name;
+    }
+
+
     loadProduct(product) {
 		this.productSize = 	product.p_sizecode;
 		this.productColor = product.p_colorcode;
@@ -121,4 +132,5 @@ export class OrderComponent implements OnInit {
     }
 
 }
+
 

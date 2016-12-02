@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrderComponent } from './order/order.component';
 import { DataService } from './services/data.service';
+import { TitleCase } from './services/titlecase.pipe';
 
 import { ToastComponent } from './shared/toast/toast.component';
 
@@ -22,7 +23,8 @@ const routing = RouterModule.forRoot([
     AppComponent,
     DashboardComponent,
     OrderComponent,
-    ToastComponent
+      ToastComponent,
+      TitleCase
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ const routing = RouterModule.forRoot([
   ],
   providers: [
     DataService,
-    ToastComponent
+      ToastComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

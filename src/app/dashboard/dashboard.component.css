@@ -32,3 +32,101 @@ p{
     border-bottom: 5px solid #e1e1e1;
     padding-bottom: 13px;
 }
+
+
+.shopping-head
+{
+    color: #a7a7a7;
+    font-family: "Trebuchet MS";
+    font-size: 48px;
+    font-style: normal;
+    font-weight: normal;
+    margin-bottom: 20px;
+    padding: 27px 0 10px 30px;
+
+}
+
+
+.header-border{
+    border-bottom: 5px solid #e1e1e1;
+    border-top: 2px solid #e1e1e1;
+    color: #a1a1a1;
+    font-size: 14px;
+    height: 60px;
+    margin-bottom: 15px;    
+    padding: 12px 40px 0 9px;
+}
+
+
+.prod-name{
+    color: #808080;
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: -14px;
+}
+
+
+.prod-style{
+    color: #808080;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: -14px;
+}
+
+.link{
+    padding: 0 20px;
+    cursor:pointer;
+}
+
+
+.prod-action{
+    color: #60767c;
+    font-size: 13px;
+    font-weight: normal;
+    margin-left: -34px;
+    margin-top: 60px;
+}
+
+.input-qty{
+    width:28px;
+    padding:1px 2px 3px 4px;
+    padding: 0 0 2px 10px;
+    width: 34px;
+    color: #808080;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.prod-size{
+    color: #808080;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 2px 0 0 19px;
+}
+
+
+.prod-qty{
+    padding: 0;
+}
+
+
+.price-value{
+    padding: 0;
+    vertical-align: text-bottom;
+}
+
+.price-text{
+   color: #808080;
+    font-size: 21px;
+    font-weight: 500;
+    margin-left: -13px;
+    padding: 0 0 0 5px;
+}
+
+.prod-currency{
+     color: #808080;
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: -6px;
+    vertical-align: text-top;
+}

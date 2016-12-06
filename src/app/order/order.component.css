@@ -57,7 +57,14 @@ p{
     margin-bottom: 15px;    
     padding: 12px 40px 0 9px;
 }
-
+header-border-alt{
+    border-bottom: 5px solid #e1e1e1;
+    color: #a1a1a1;
+    font-size: 14px;
+    height: 60px;
+    margin-bottom: 15px;    
+    padding: 12px 40px 0 9px;
+}
 
 .cell-size{
     
@@ -119,23 +126,25 @@ p{
 }
 
 
-.prod-originalprice{
+.price-value{
     padding: 0;
+    vertical-align: text-bottom;
 }
 
-.prod-price{
+.price-text{
    color: #808080;
     font-size: 21px;
     font-weight: 500;
     margin-left: -13px;
-    margin-top: -7px;
     padding: 0 0 0 5px;
 }
 
 .prod-currency{
-    color: #808080;
-    font-size: 13px;
+     color: #808080;
+    font-size: 18px;
     font-weight: 500;
+    margin-right: -6px;
+    vertical-align: text-top;
 }
 
 .side-text-1{
@@ -159,4 +168,78 @@ p{
     font-weight: 300;
     text-decoration:underline;
     padding: 0px 0px 20px 0px;
+}
+
+.btnApply{
+    width:35%;
+    background-color:white;
+    color: #808080;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.txtPromotion{
+    width:60%;
+     color: #808080;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.bold-text{
+    color: #808080;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: "Trebuchet MS"
+}
+
+
+.bolder-text{
+    color: #808080;
+    font-size: 16px;
+    font-weight: 900;
+    font-family: "Trebuchet MS"
+}
+
+
+.light-text{
+    color: #808080;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+
+.dvPromotion{
+    border-bottom: 5px solid #e1e1e1;
+    margin-top:30px;
+    height:73px;
+}
+
+.lbl-amount{
+    text-align:right;
+}
+
+.price-margin{
+    margin-right:60px;
+}
+.price-row{
+    margin-top:35px;
+}
+
+.price-row-2{
+    margin-top:30px;
+}
+.price-row-3{
+    margin-top:30px;
+    border-bottom: 5px solid #e1e1e1;
+    border-top: 2px solid #e1e1e1;
+    padding-top:10px;
+}
+
+
+.price-text-bold{
+   color: #808080;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: -13px;
+    padding: 0 0 0 5px;
 }

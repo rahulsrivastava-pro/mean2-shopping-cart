@@ -37,7 +37,8 @@
     </div>
 
         <div class="col-md-12 col-xs-12 rowCover" *ngFor="let product of selectedproducts; let index=index; let odd=odd; let even=even;" [ngClass]="{ odd: odd, even: even }">
-            <div class="row rowBorder">
+            
+            <div class="row rowBorder hidden-xs-down">
                 <div class="col-md-3"><img src="/assets/{{product.info.p_image}}" /></div>
                 <div class="col-md-9">
 
@@ -60,6 +61,29 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="row rowBorder hidden-md-up">
+                <div class="row">
+                    <div class="col-xs-6"><img src="/assets/{{product.info.p_image}}" /></div>
+                    <div class="col-xs-6">
+
+                        <div class="row">
+                            <div class="col-xs-12 prod-name-alt"> {{product.info.p_variation | uppercase}} </div>
+                            <div class="col-xs-12 prod-name-alt"> {{product.info.p_name | uppercase}} </div>
+                            <div class="col-xs-12 prod-name-alt"> Style #: {{product.info.p_style | uppercase}} </div>
+                            <div class="col-xs-12 prod-name-alt"> Colour: {{getColorByCode(product.p_colorcode) | titleCase}} </div>
+                            <div class="col-xs-12 prod-name-alt"> Size: {{product.p_sizecode | uppercase}} </div>
+                            <div class="col-xs-12 prod-qty"> QTY: <input type="text" [value]="product.p_quantity" readonly="readonly" class="input-qty" /> </div>
+                            <div class="col-xs-12 price-text"> <span class="prod-currency">{{product.info.p_currency}}</span> <span class="price-value">{{product.info.p_originalprice}}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row prod-action-alt col-xs-12">
+                    <a id="neworder" title="Edit Product" (click)="modal.open();loadProduct(product);" class="link">Edit</a> | <a id="neworder" (click)="deleteProduct(product);" class="link" title="Remove Product"> <i class="fa fa-remove"></i> REMOVE</a> | <a title="To Be Implemented" id="neworder" class="link">SAVE FOR LATER</a>
+                </div>
+            </div>
+            
         </div>
 
     </div>

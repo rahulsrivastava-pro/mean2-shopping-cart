@@ -2,7 +2,6 @@
 var express = require('express');
 
 // Models
-var Cat = require('../models/cat.model.js');
 var Colors = require('../models/colors.model.js');
 var Sizes = require('../models/sizes.model.js');
 var Products = require('../models/products.model.js');
@@ -46,8 +45,8 @@ var calculatePaybleAmount = function(productId, mode, quantity_new, quantity_old
                                 subTotal = (parseFloat(obj.subtotal) + (parseFloat(price) * q_new) - (parseFloat(price) * q_old)).toString();
                             }
                             else {// REMOVE
-                                quanitity = (parseInt(obj.quantity) - 0) - quanitity;
                                 subTotal = (parseFloat(obj.subtotal) - (parseFloat(price) * quanitity)).toString();
+                                quanitity = (parseInt(obj.quantity) - 0) - quanitity;
                             }
 
 

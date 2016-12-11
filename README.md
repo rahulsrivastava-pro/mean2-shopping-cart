@@ -1,4 +1,4 @@
-# Shopping Cart Module using Angular2, Node, Express and Mongo [![Dependencies](https://david-dm.org/DavideViolante/Angular2-Full-Stack.svg)](https://david-dm.org/DavideViolante/Angular2-Full-Stack) [![Donate](https://img.shields.io/badge/paypal-donate-179BD7.svg)](https://www.paypal.me/dviolante) [![MIT license](http://img.shields.io/badge/license-MIT-lightgrey.svg)](http://opensource.org/licenses/MIT)
+# Shopping Cart Module using Angular2, Node, Express and Mongo  [![MIT license](http://img.shields.io/badge/license-MIT-lightgrey.svg)](http://opensource.org/licenses/MIT)
 
 
 The front-end of this project was generated with [Angular CLI](https://github.com/angular/angular-cli).
@@ -9,7 +9,7 @@ This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_
 * [**A**ngular 2](https://angular.io): frontend framework
 * [**N**ode.js](https://nodejs.org): runtime environment
 * [Angular CLI](https://cli.angular.io): project scaffolding
-* [Bootstrap](http://www.getbootstrap.com): layout and styles
+* [Bootstrap 4](http://www.getbootstrap.com): layout and styles
 * [Font Awesome](http://fontawesome.io): icons
 
 ## Prerequisites
@@ -17,11 +17,20 @@ This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_
 2. Install Angular CLI: `npm i angular-cli -g`
 3. From project root folder install all the dependencies: `npm i`
 
+## CLOUD URL
+1. The application has been deployed to Heroku - Cloud Application Platform. 
+2. Visit this link to test the application: [https://heroku-node-shopkart.herokuapp.com/](https://heroku-node-shopkart.herokuapp.com/))
+
 ## Run
-1. Command window 1: `mongod`: run MongoDB
-2. Command window 2: `ng build -w`: build the project and keep watching the files for changes
-3. Command window 3: `npm start`: run Express server
-4. Go to [localhost:3000](http://localhost:3000)
+1. Delete all files from 'dist' folder.
+2. Command window 1: `ng build -w`: build the project and keep watching the files for changes
+3. Command window 2: `npm start`: run Express server
+4. Go to [localhost:8080](http://localhost:8080)
+5. Database for the application is placed on Mongo-lab. In order to connect to it, use the following connection from any local mongo db client (like RoboMongo):
+   Database: ds133158.mlab.com
+   Port: 33158
+   Database User: rahul
+   Databasw	User's password: rahul		
 
 ## Production
 Run `ng build -prod` to create a production ready bundle.

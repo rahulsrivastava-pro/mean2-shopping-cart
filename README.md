@@ -19,18 +19,18 @@ This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_
 
 ## CLOUD URL
 1. The application has been deployed to Heroku - Cloud Application Platform. 
-2. Visit this link to test the application: [https://heroku-node-shopkart.herokuapp.com/](https://heroku-node-shopkart.herokuapp.com/))
+2. Visit this link to test the application: [https://heroku-node-shopkart.herokuapp.com/](https://heroku-node-shopkart.herokuapp.com/)
 
 ## Run
 1. Delete all files from 'dist' folder.
 2. Command window 1: `ng build -w`: build the project and keep watching the files for changes
 3. Command window 2: `npm start`: run Express server
 4. Go to [localhost:8080](http://localhost:8080)
-5. Database for the application is placed on Mongo-lab. In order to connect to it, use the following connection from any local mongo db client (like RoboMongo):
-   Database: ds133158.mlab.com
-   Port: 33158
-   Database User: rahul
-   Databasw	User's password: rahul		
+5. Database for the application is placed on Mongo-lab. In order to connect to it, use the following connection settings from any local mongo db client (like RoboMongo):
+   `Database: ds133158.mlab.com`,
+   `Port: 33158`,
+   `Database User: rahul`,
+   `Database User's password: rahul`.		
 
 ## Production
 Run `ng build -prod` to create a production ready bundle.

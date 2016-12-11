@@ -32,6 +32,13 @@ p{
     padding-bottom: 30px;
 }
 
+
+.rowBorder-alt{
+    border-bottom: 3px solid #e1e1e1;
+    padding-bottom: 15px;
+    margin-left:10px;
+}
+
 .shopping-head
 {
     color: #a7a7a7;
@@ -65,6 +72,8 @@ p{
     height: 60px;
     margin-bottom: 15px;    
     padding: 12px 40px 0 9px;
+    margin-left:10px;
+    margin-right:2px;
 }
 
 .cell-size{
@@ -82,7 +91,7 @@ p{
     margin-left: -14px;
 }
 
-prod-name-alt{
+.prod-name-alt{
     color: #808080;
     font-size: 12px;
     font-weight: 500;
@@ -90,16 +99,18 @@ prod-name-alt{
 }
 
 
+.prod-info{
+    color: #808080;
+    font-size: 12px;
+    font-weight: 300;
+    
+}
+
 .prod-style{
     color: #808080;
     font-size: 13px;
     font-weight: 500;
     margin-left: -14px;
-}
-
-.link{
-    padding: 0 20px;
-    cursor:pointer;
 }
 
 
@@ -144,17 +155,24 @@ prod-name-alt{
 }
 
 
+.prod-qty-alt{
+        padding: 6px 0px 0px 16px;
+        color: #808080;
+        font-size: 13px;
+        font-weight: 400;
+}
+
 .price-value{
     padding: 0;
     vertical-align: text-bottom;
 }
 
-.price-text{
+.price-text-alt{
    color: #808080;
     font-size: 21px;
     font-weight: 500;
-    margin-left: -13px;
-    padding: 0 0 0 5px;
+    margin-left: 8px;
+    padding: 3px 0px 15px 5px;
 }
 
 .prod-currency{
@@ -164,7 +182,13 @@ prod-name-alt{
     margin-right: -6px;
     vertical-align: text-top;
 }
-
+.prod-currency-alt{
+     color: #808080;
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: -6px;
+    vertical-align: text-top;
+}
 .side-text-1{
     color: #808080;
     font-size: 12px;
@@ -226,26 +250,30 @@ prod-name-alt{
 }
 
 
-.dvPromotion{
-    border-bottom: 5px solid #e1e1e1;
-    margin-top:30px;
-    height:73px;
-}
 
 .lbl-amount{
     text-align:right;
 }
 
-.price-margin{
-    margin-right:60px;
-}
 .price-row{
     margin-top:35px;
 }
 
-.price-row-2{
-    margin-top:30px;
+
+
+
+.top-border{
+    border-top: 3px solid #e1e1e1;
 }
+
+@media (min-width: 768px) {
+
+    
+.link{
+    padding: 0 20px;
+    cursor:pointer;
+}
+
 .price-row-3{
     margin-top:30px;
     border-bottom: 5px solid #e1e1e1;
@@ -253,15 +281,135 @@ prod-name-alt{
     padding-top:10px;
 }
 
+    
+    .dvPromotion{
+        border-bottom: 5px solid #e1e1e1;
+        margin-top:30px;
+        height:73px;
+    }
 
-.price-text-bold{
-   color: #808080;
-    font-size: 25px;
-    font-weight: bold;
-    margin-left: -13px;
-    padding: 0 0 0 5px;
+    .price-text-bold{
+       color: #808080;
+        font-size: 25px;
+        font-weight: bold;
+        margin-left: -13px;
+        padding: 0 0 0 5px;
+    }
+    .price-margin{
+        margin-right:60px;
+    }
+
+    .continue-shopping{
+        text-align:right;
+        padding-top:10px;
+        text-decoration:underline;
+    }
+
+    .align-right{
+      text-align:right;
+  }
+    .bottom-text{
+        margin-top:4px;
+        text-align:right;
+    }
+
+    .price-row-2{
+    margin-top:30px;
+    }
+
+    
+    .price-text{
+       color: #808080;
+        font-size: 21px;
+        font-weight: 500;
+        margin-left: -13px;
+        padding: 0 0 0 5px;
+    }
+
+    .free{
+        text-align:right;padding-right:80px;
+    }
 }
 
 @media (max-width: 767px) {
     /* CSS goes here */
+    .free{
+        text-align:right;padding-right:40px;
+    }
+    
+.link{
+    padding: 0 13px;
+    cursor:pointer;
+}
+
+    
+.price-row-3{
+    margin-top:30px;
+    border-bottom: 5px solid #e1e1e1;
+    border-top: 2px solid #e1e1e1;
+    padding-top:10px;
+    margin-left:2px;
+    margin-right:4px;
+}
+
+    
+    .dvPromotion{
+        border-bottom: 5px solid #e1e1e1;
+        margin-top:30px;
+        height:73px;
+        margin-left:12px;
+    }
+    
+    .price-text-bold{
+       color: #808080;
+        font-size: 21px;
+        font-weight: bold;
+        margin-left: -13px;
+        margin-top: -13px;
+        padding: 0 0 0 5px;
+    }
+    .price-text{
+       color: #808080;
+        font-size: 19px;
+        font-weight: 500;
+        margin-left: -13px;
+        margin-top: -14px;
+        padding: 0 0 0 5px;
+    }
+    
+    .price-margin{
+        margin-right:5px;
+    }    
+    .centered{
+        text-align:center!important;
+    }
+
+    .broad{
+        width:90%;
+    }
+
+    .top-margin{
+        margin-top: 5px;
+    }
+
+    .row-swap {
+    display: flex;
+    flex-direction: column
+  }
+  .row-swap > div:first-of-type {
+    order: 1
+  }
+
+  
+.price-row-2{
+    margin-top:10px;
+    
+}
+
+.extra-pad{
+    padding:0px 45px 0px 45px;
+    margin-left:10px;
+    margin-right:10px;
+}
+  
 }

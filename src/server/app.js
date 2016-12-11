@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test');
+mongoose.connect('mongodb://rahul:rahul@ds133158.mlab.com:33158/dbonline');
 var db = mongoose.connection;
 mongoose.Promise = global.Promise;
 

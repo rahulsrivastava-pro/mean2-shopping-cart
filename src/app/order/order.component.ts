@@ -10,8 +10,8 @@ import { DataService } from '../services/data.service';
 
 @Component({
    selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+    templateUrl: './order.component.html?v=' + Math.random(),
+    styleUrls: ['./order.component.css? v =' + Math.random()]
 })
 export class OrderComponent implements OnInit {
 
@@ -44,9 +44,13 @@ export class OrderComponent implements OnInit {
   constructor(private http: Http,
       private dataService: DataService,
               private toast: ToastComponent,
-              private formBuilder: FormBuilder) { }
+      private formBuilder: FormBuilder) {
+  }
 
-	  ngOnInit() {
+    ngOnInit() {
+
+          this.isDataLoading = true;
+          this.selectedproducts = [];
 		  this.getSelectedProducts();
 		  this.getSizes();
           this.getColors();

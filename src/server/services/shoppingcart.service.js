@@ -145,21 +145,19 @@ app.get('/setup', function(req, res) {
     app.get('/selectedproducts', function (req, res) {
         var productsArr = [];
         var productsList = [];
-
         Products.find({}).lean().exec(function (err, productInfo) {
             productsArr = productInfo;
-        });
-
-        SelectedProducts.find({}).lean().exec(function (err, products) {
-            for (var i = 0; i < products.length; i++) {
-                for (var j in productsArr) {
-                    if (productsArr[j].p_id == products[i].p_id) {
-                        products[i].info = productsArr[j];
+            SelectedProducts.find({}).lean().exec(function (err, products) {
+                for (var i = 0; i < products.length; i++) {
+                    for (var j in productsArr) {
+                        if (productsArr[j].p_id == products[i].p_id) {
+                            products[i].info = productsArr[j];
+                        }
                     }
                 }
-            }
-            productsList = products;
-            return res.end(JSON.stringify(productsList));
+                productsList = products;
+                return res.end(JSON.stringify(productsList));
+            });
         });
     });
 

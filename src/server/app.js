@@ -4,7 +4,7 @@ var morgan = require('morgan'); // logger
 var bodyParser = require('body-parser');
 
 var app = express();
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 8080));
 
 app.use('/', express.static(__dirname + '/../../dist'));
 app.use('/', express.static(__dirname + '/../public'));

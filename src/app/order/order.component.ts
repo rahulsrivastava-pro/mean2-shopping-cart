@@ -10,8 +10,8 @@ import { DataService } from '../services/data.service';
 
 @Component({
    selector: 'app-order',
-    templateUrl: './order.component.html?v=' + Math.random(),
-    styleUrls: ['./order.component.css? v =' + Math.random()]
+    templateUrl: './order.component.html',
+    styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
 

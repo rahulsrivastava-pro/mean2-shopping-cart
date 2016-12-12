@@ -160,6 +160,12 @@ p{
     vertical-align: text-top;
 }
 
+.align-center{
+    text-align:center;
+    color: #808080;
+    font-size: 12px;
+    font-weight: 400;
+}
 
 
 @media (min-width: 768px) {

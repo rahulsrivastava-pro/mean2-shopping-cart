@@ -266,6 +266,14 @@ p{
     border-top: 3px solid #e1e1e1;
 }
 
+
+.align-center{
+    text-align:center;
+    color: #808080;
+    font-size: 12px;
+    font-weight: 400;
+}
+
 @media (min-width: 768px) {
 
     
@@ -397,7 +405,7 @@ p{
     flex-direction: column
   }
   .row-swap > div:first-of-type {
-    order: 1
+    order: 1;
   }
 
   
